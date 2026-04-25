@@ -1,0 +1,192 @@
+# FSE.md — FlowState Engineering Foundation File
+
+<!-- =================================================================== -->
+<!-- FSE START                                                           -->
+<!-- Everything between FSE START and FSE END is the methodology itself. -->
+<!-- Do not modify this block unless you are upgrading the FSE version.  -->
+<!-- =================================================================== -->
+
+## FSE Session Protocol — VERIFY → PLAN → EXECUTE → VALIDATE
+
+Every FSE session follows four phases, in order. Skipping a phase is a protocol violation.
+
+### 1. VERIFY
+At the start of every session, before doing anything else:
+
+1. Read `FSE.md`, `FSE_STATE.md`, and `FSE_DISCOVERY.md` in full.
+2. Read any Tier 2 files that exist (`FSE_POLICE.md`, `FSE_SCHEMA.md`, `FSE_UI.md`, `FSE_PACKAGES.md`, `PATTERNS.md`).
+3. Run the project's build/check command. Capture the current state.
+4. Confirm the working tree is clean (or note what is dirty and why).
+5. Report:
+   - Current build state (clean / warnings / errors)
+   - Current priorities from `FSE_STATE.md`
+   - Any blockers from the last session
+
+Do not start coding until VERIFY is complete.
+
+### 2. PLAN
+Before writing or modifying any file:
+
+1. State what will be built, in plain language.
+2. List every file that will be created, modified, or deleted.
+3. Call out any architectural decision that is not already in `FSE.md`.
+4. Wait for explicit approval.
+
+One approval covers one plan. A new scope means a new plan.
+
+### 3. EXECUTE
+Once approved:
+
+1. Work one file at a time.
+2. Output complete file contents — never snippets, diffs, or partial implementations.
+3. No stubs, TODOs, or placeholder functions. If a piece is unknown, stop and ask.
+4. After each file, wait for confirmation before moving to the next file.
+5. Do not change code outside the agreed scope. If adjacent cleanup is warranted, surface it — do not silently make the edit.
+
+### 4. VALIDATE
+After every change:
+
+1. Run the self-healing build loop (below).
+2. Confirm zero errors and no new warnings above the baseline.
+3. Update `FSE_STATE.md`:
+   - Append a session history entry
+   - Update build state
+   - Record any new lessons learned
+   - Record any new technical debt
+4. Never commit with a broken build.
+
+## Self-Healing Build Loop
+
+After every change that could affect the build:
+
+```
+Attempt 1: build → if clean, done. If broken, read the error and fix.
+Attempt 2: build → if clean, done. If broken, read the error and fix.
+Attempt 3: build → if clean, done. If broken, STOP.
+```
+
+**Maximum three attempts.** On the third failure, do not attempt a fourth fix. Stop, capture the full error, report it, and hand back control. Pushing past this limit is how broken code reaches production.
+
+## Counter-Point Protocol
+
+When the self-healing build loop hits three failed attempts:
+
+1. Stop.
+2. Do not try another fix in the same direction. The reasoning that produced the last three attempts is the reasoning that is failing — trust that signal.
+3. Report the full context: the error, each attempt, and why each attempt was made.
+4. Switch approach: consult the user, use a different model, consult a Tier 2 document, or revert and re-plan.
+
+The Counter-Point Protocol exists to break AI logic loops — the failure mode where an assistant repeats variants of the same wrong answer with increasing confidence.
+
+## Session End Protocol
+
+Before ending any session:
+
+1. Confirm the build is clean.
+2. Confirm the working tree is committed or deliberately left dirty.
+3. Update `FSE_STATE.md` with:
+   - What was built in this session
+   - What the next session should start with
+   - Any blockers the next session will hit
+4. If any lessons were learned this session, record them under Lessons Learned.
+5. If any technical debt was introduced deliberately, record it under Known Technical Debt.
+
+## FSE Document Ecosystem
+
+### Tier 1 — Required
+- **FSE.md** — This file. Architecture, stack, standing orders, and the methodology block.
+- **FSE_STATE.md** — Living state. Session history, priorities, lessons, debt.
+- **FSE_DISCOVERY.md** — Initial audit. Infrastructure checklist, gaps.
+
+### Tier 2 — Add When Needed
+- **FSE_POLICE.md** — Absolute rules that must never be violated (security, compliance, data boundaries).
+- **FSE_SCHEMA.md** — Entity model, database schema conventions, naming rules.
+- **FSE_UI.md** — Design language, component rules, accessibility baseline.
+- **FSE_PACKAGES.md** — Approved dependencies. Rules for adding new ones.
+- **PATTERNS.md** — Proven patterns and idioms for this codebase.
+
+Add a Tier 2 file when:
+- `FSE.md` exceeds ~15KB, or
+- A category of rules is being repeated across sessions, or
+- A domain (UI, schema, security) warrants its own authoritative document.
+
+### Tier 3 — Optional
+- **BUILD_LOG_*.md** — Long-form logs of significant builds or migrations.
+- **AUDIT_REPORT.md** — Point-in-time audits.
+- **CHANGELOG.md** — User-facing change history.
+
+## Universal Standing Orders
+
+These apply to every FSE project, regardless of stack.
+
+1. **No stubs, TODOs, placeholders, or incomplete implementations.** If it isn't finished, it doesn't get written.
+2. **No snippets or partial code.** Output complete file contents every time.
+3. **Never assume file contents.** Always read the current file or ask before modifying.
+4. **Never change styling or functionality outside the current task scope.** Surface adjacent issues; do not silently fix them.
+5. **The self-healing build loop runs after every change.** No exceptions.
+6. **Never commit with a broken build.**
+7. **Credentials are never output, logged, or committed.** Ever.
+
+Stack-specific standing orders go in the "Project-Specific Standing Orders" section below, or in a stack extension file.
+
+<!-- =================================================================== -->
+<!-- FSE END                                                             -->
+<!-- Everything below this line is project-specific.                     -->
+<!-- =================================================================== -->
+
+## Project Identity
+
+- **Name:** [Project name]
+- **Owner:** [Owner / team]
+- **Purpose:** [One-sentence description of what this project does and for whom.]
+- **Status:** [Pre-production / Production / Maintenance]
+- **Repository:** [URL]
+
+## Tech Stack
+
+- **Language:** [e.g. TypeScript 5.x]
+- **Runtime:** [e.g. Node.js 20 LTS]
+- **Framework:** [e.g. Next.js 14 App Router]
+- **Database:** [e.g. PostgreSQL 16 via Supabase]
+- **Hosting:** [e.g. Vercel]
+- **Auth:** [e.g. Supabase Auth]
+- **Other key dependencies:** [List anything architecturally load-bearing]
+
+## Solution Structure
+
+```
+[project-root]/
+  [describe top-level folders and what lives in each]
+```
+
+Include:
+- Where business logic lives
+- Where UI components live
+- Where data access lives
+- Where tests live
+- Anything structurally unusual
+
+## Database
+
+- **Engine:** [e.g. PostgreSQL 16]
+- **Migration tool:** [e.g. Prisma Migrate / Supabase migrations / Flyway]
+- **Naming conventions:** [snake_case tables, plural table names, etc.]
+- **Primary entities:** [List top-level entities and their relationships, or link to FSE_SCHEMA.md]
+
+## Project-Specific Standing Orders
+
+Rules that apply to this project in addition to the Universal Standing Orders above.
+
+1. [e.g. All DB writes go through the repository layer — never call the DB client from route handlers]
+2. [e.g. No new runtime dependencies without updating FSE_PACKAGES.md]
+3. [e.g. All user-facing strings go through the i18n module]
+
+## Warning Baseline
+
+The current acceptable warning count for this project. Any build that produces more than this count is considered failing.
+
+- **Build warnings:** [0]
+- **Lint warnings:** [0]
+- **Type warnings:** [0]
+
+Raise the baseline only with a recorded reason in `FSE_STATE.md`.
