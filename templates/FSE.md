@@ -141,16 +141,28 @@ Sessions are numbered. Session artifacts have a lifecycle. Both are universal ac
 
 ### Session Numbering
 
-Every CLI session is numbered sequentially across the project's lifetime as `SESSION_NN` (zero-padded 2-digit; expand to 3 digits past 99). Numbering is project-local — each project starts at `SESSION_01` and counts independently.
+Every CLI session has a unique, sequential identifier within the project. Numbering is project-local — each project counts independently.
 
+A project picks one of two valid numbering schemes and stays consistent within itself:
+
+**Flat numbering** — `SESSION_01`, `SESSION_02`, `SESSION_03`, …
+- Zero-padded 2-digit; expand to 3 digits past 99.
+- Simplest scheme. Best for projects without explicit phasing.
+
+**Hierarchical numbering** — `Session 1`, `Session 2A`, `Session 2A.1`, `Session 2B.1.2`, …
+- Phase + sub-phase + run structure mirroring the project's build plan.
+- Best for projects with explicit phases or multi-stage builds.
+- Branch points (e.g., `2A.1` and `2A.2`) and refinements (e.g., `2A.1.1`) are valid.
+
+Both schemes share the same rules:
 - A session is one CLI invocation that runs to completion (success, partial completion, or clean stop).
-- Numbers are sequential and never reused. Failed or reverted sessions still consume a number.
-- Session numbers persist across branches and phases. They count CLI runs, not git operations.
+- Identifiers are unique and never reused. Failed or reverted sessions still consume an identifier.
+- Identifiers persist across branches and phases. They count CLI runs, not git operations.
 
-The session number appears in:
-- **Prompt headers** — `SESSION 08 — PHASE 1 RUN 2: <SCOPE>`
-- **Report filenames** — `SESSION_08_PHASE_1_RUN_2_REPORT.md`
-- **Commit messages** — `[FSE] Session 8 Phase 1 Run 2: <what shipped>`
+The session identifier appears in:
+- **Prompt headers** — `SESSION 08 — PHASE 1 RUN 2: <SCOPE>` or `SESSION 2B.1.2 — <SCOPE>`
+- **Report filenames** — `SESSION_08_PHASE_1_RUN_2_REPORT.md` or `SESSION_2B_1_2_REPORT.md` (dots become underscores in filenames)
+- **Commit messages** — `[FSE] Session 8 Phase 1 Run 2: <what shipped>` or `[FSE] Session 2B.1.2: <what shipped>`
 - **`FSE_STATE.md` session log** — see schema below
 
 The term "overnight run" is dropped. Replace with "session" or "unattended session." Sessions happen at all hours.
@@ -188,11 +200,22 @@ Bedrock files (`FSE.md`, `FSE_STATE.md`, `FSE_DISCOVERY.md`, `CLAUDE.md` thin po
 
 Every project's `FSE_STATE.md` includes a session log table with these columns:
 
-| Session | Date | Branch | Scope | Outcome | Report |
-|---------|------|--------|-------|---------|--------|
-| SESSION_01 | 2026-MM-DD | main | <scope summary> | <success/partial/reverted> | `sessions/active/SESSION_01_*.md` or `sessions/archive/YYYY-MM/SESSION_01_*.md` |
+| Session | Date | Scope | Outcome | Report |
+|---------|------|-------|---------|--------|
+| SESSION_01 | 2026-MM-DD | <scope summary> | <success/partial/reverted> | `sessions/active/SESSION_01_*.md` or `sessions/archive/YYYY-MM/SESSION_01_*.md` |
 
 The Report column is a relative path that updates when the report moves from Active to Archived.
+
+**Ordering.** Rows render in git chronological order (by commit date), not by numerical or alphabetical session identifier. The session log is a historical record of what actually happened — chronological order preserves operator behavior including out-of-name-order sessions (a `Session 2G.0.1` committed before `Session 2G` reflects the real sequence and stays in that order in the table).
+
+**Optional Branch column.** Projects that work across multiple branches may add a `Branch` column between `Date` and `Scope`. Projects that stay on `main` (the common case) omit the column rather than fill it with placeholder values.
+
+**Backfill clustering rule.** When reconstructing session history from git log for projects adopting the methodology mid-stream, group commits into sessions using these heuristics:
+
+1. Commits with explicit session prefixes (`Session 2A:`, `[FSE] Session 8:`, etc.) belong to the named session.
+2. Unprefixed commits cluster into the adjacent named session when same date AND scope-adjacent (chore commits supporting a feature commit, hotfixes following a feature ship). The clustered commits inherit the named session's identifier; the table row notes "(with hotfixes)" or similar in the Outcome column.
+3. Unprefixed commits that don't cluster cleanly into an adjacent session form a new synthesized session. Synthesized identifiers follow the project's existing scheme (e.g., a new `2E.1` between `2E` and `2F` in a hierarchical project).
+4. Reconstructed entries are flagged in the Report column as `(reconstructed — no original report)`. Sessions with original reports preserved (e.g., entries already in `SESSION_STATE.md`) reference those instead.
 
 <!-- =================================================================== -->
 <!-- FSE END                                                             -->
