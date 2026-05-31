@@ -242,6 +242,42 @@ Session log table: deferred until bedrock rename
 
 Once all four components are adopted, remove the adoption state block.
 
+## Module Pattern — Context-Bounded Context
+
+**Thesis:** Modular software architectures demand modular context. Because the AI context window is the development environment, context isolation must precisely mirror architectural isolation to prevent token bloat, context degradation, and cross-domain hallucination as a solution scales.
+
+### Structural Invariants
+
+- Every distinct domain module folder under `src/Modules/*` must contain a local `MODULE.md` file.
+- **Activation Threshold:** This constraint is conditionally active. Greenfield projects at S001 with zero modules carry zero `MODULE.md` files. The constraint activates upon creation of the first module.
+- **Header Convention (exact):**
+
+  ```
+  # {ModuleName} — Module Reference
+
+  Read this file when working on this module. Platform architecture and global FSE rules live in the root FSE.md.
+  ```
+
+- The root `FSE.md` maintains a Module Reference Table listing every module and its `MODULE.md` path.
+
+### Content Scope & Boundaries
+
+A local `MODULE.md` acts as a context firewall. The root `FSE.md` remains the global constitution and must never absorb module-specific details. Local `MODULE.md` is strictly limited to:
+
+- Isolated domain schema and entities
+- Module-specific DbContext configuration and data-isolation rules
+- Internal module invariants and business logic
+- Explicit cross-module data-access notes (APIs, events, allowed dependencies)
+
+### Protocol Enforcement
+
+- **Scaffolding Rule:** A module's `MODULE.md` is created in the exact same session as the module scaffolding. A module cannot be born without its context boundary file.
+- **VERIFY Gate:** When a session targets a specific module, the AI must read that module's `MODULE.md` as an explicit step in the VERIFY phase before touching any code in that domain.
+
+### Rationale (Solo Founder Lens)
+
+Multi-person teams can rely on human domain owners ("Ask Dave"). As a solo founder scaling a portfolio, you offload domain memory entirely to session context. This pattern protects your development environment from the success of your own modular architecture.
+
 <!-- =================================================================== -->
 <!-- FSE END                                                             -->
 <!-- Everything below this line is project-specific.                     -->
@@ -278,6 +314,11 @@ Bedrock Authoring Guard: nothing below is ground truth until cleared.
 [project-root]/
   [describe top-level folders and what lives in each]
 ```
+
+| Module | MODULE.md Path | Status |
+|--------|----------------|--------|
+
+*One row per module, added as each module is scaffolded. Empty until the first module is created.*
 
 Include:
 - Where business logic lives
