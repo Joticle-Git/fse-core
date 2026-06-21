@@ -29,8 +29,10 @@ Before writing or modifying any file:
 
 1. State what will be built, in plain language.
 2. List every file that will be created, modified, or deleted.
-3. Call out any architectural decision that is not already in `FSE.md`.
-4. Wait for explicit approval.
+3. Tag every element of the plan with its provenance — D (Directed), E (Extrapolated), I (Inferred), or S (Scaffold) — per Universal Standing Order 12.
+4. Surface every Inferred (I) element as a separate, explicit list for operator confirmation before any build begins. State each Extrapolated (E) element alongside the directed requirement it derives from. Directed (D) elements reference their directive; Scaffold (S) needs no surfacing.
+5. Call out any architectural decision that is not already in `FSE.md`.
+6. Wait for explicit approval.
 
 One approval covers one plan. A new scope means a new plan.
 
@@ -133,6 +135,7 @@ These apply to every FSE project, regardless of stack.
 9. **Pattern-First Design.** No UI element is built in isolation. Before writing new component CSS or markup, consult `FSE_UI.md` for an existing pattern. If a pattern exists, it must be used. If a new pattern is required, it is proposed during the PLAN phase, added to `FSE_UI.md`, and only then implemented. The session does not close until `FSE_UI.md` reflects every component introduced.
 10. **Visual Validation Phase.** Every session that touches UI ends with a Visual Validation step inside VALIDATE. Each modified page is compared against the relevant patterns in `FSE_UI.md`. Any drift is either resolved before commit or recorded explicitly in `FSE_STATE.md` as accepted technical debt with justification. Visual validation is a named phase, not a habit.
 11. **Bedrock Authoring Guard.** When authoring or editing a foundation file, any section lacking an explicit human-provided decision is recorded in the file's OPEN DECISIONS block and never filled with a plausible default. A section with no decision is left explicitly open; it is not completed with an inferred or stack-conventional answer. A confabulated bedrock decision is more dangerous than a missing one — a gap gets noticed, an invented decision gets enforced by every session that follows. The operator clears the OPEN DECISIONS block over subsequent sessions; until a decision is cleared, no session treats the open section as ground truth.
+12. **Planning Provenance.** Every element of a plan, discovery, or design carries an explicit provenance tag: **D (Directed)** — explicitly requested by the operator; traceable to a specific directive. **E (Extrapolated)** — logically required by a directed requirement even if not stated outright: if X is directed and X cannot work without Y, then Y is Extrapolated, not Inferred. **I (Inferred)** — not directed; added as best-practice or standard modeling — a defensible judgment call nobody asked for. **S (Scaffold)** — generic platform, framework, or architectural convention, not domain-specific (audit columns, CRUD plumbing, soft-delete patterns). Only Inferred (I) elements must be surfaced to the operator as a separate, explicit list for confirmation before any build begins — an unconfirmed inference is a question, not a foundation, and acting on one without surfacing it is a protocol violation. Extrapolated (E) elements are stated alongside the directed requirement they derive from, so the operator can check the logic. Directed (D) elements reference their directive. Scaffold (S) is exempt from surfacing — it is standard convention, and exempting it is what keeps the gate low-noise. This is the planning-time companion to the Bedrock Authoring Guard: that guard governs what gets written into foundation files; Planning Provenance governs what gets acted on during a session.
 
 Stack-specific standing orders go in the "Project-Specific Standing Orders" section below, or in a stack extension file.
 

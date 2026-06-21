@@ -5,8 +5,8 @@ This file is updated at the end of every session. It is the single source of tru
 ## Identity
 
 - **Project:** fse-core — the FlowState Engineering methodology repository
-- **FSE Version:** 1.0.0
-- **Last Updated:** 2026-06-08
+- **FSE Version:** 1.1.0
+- **Last Updated:** 2026-06-18
 - **Last Session By:** Scott Michael Wilson
 
 ## Build State
@@ -60,10 +60,23 @@ N/A — no build. The gate is documentation integrity.
 | Session | Date | Scope | Outcome | Report |
 |---------|------|-------|---------|--------|
 | SESSION_01 | 2026-06-08 | Adopt FSE self-hosting — author root `FSE.md`, `FSE_STATE.md`, `FSE_DISCOVERY.md` + `.claude/instructions.md` wiring | success | (no separate report — recorded inline under Session History) |
+| SESSION_02 | 2026-06-18 | Promote Planning Provenance to USO 12 — methodology v1.0.0 → v1.1.0 | success | (no separate report — recorded inline under Session History) |
 
 ## Session History
 
 Most recent session first. Each entry is short — the diff tells the story of *what*; this log captures *why*.
+
+---
+
+### SESSION_02 — 2026-06-18 — Promote Planning Provenance to USO 12 (methodology v1.1.0)
+**Goal:** Inscribe the Planning Provenance rule into the methodology constitution as Universal Standing Order 12.
+**Done:**
+- Filed the opening notification artifact `docs/methodology/planning-provenance/NOTIFICATION-2026-06-18.md` before any methodology edit, per the notification-before-implementation standing order.
+- Added USO 12 (Planning Provenance) to the Universal Standing Orders and amended the PLAN phase with the D/E/I/S tagging step and the surface-Inferred step.
+- Bumped `VERSION` 1.0.0 → 1.1.0 and tagged `v1.1.0` — editing the `FSE START … FSE END` block is a version event.
+- Added the Planning Provenance output convention to `templates/FSE_STATE.md` so downstream adopters inherit it.
+**Reasoning:** Planning Provenance closes the inference-as-requirement failure mode — an unprompted judgment call that persists in a plan acquires the authority of a directive over later sessions. The D/E/I/S taxonomy makes provenance explicit; surfacing only Inferred elements (Scaffold exempt) keeps the confirmation gate low-noise. It is the planning-time companion to USO 11 (Bedrock Authoring Guard): USO 11 governs what gets written into foundation files, USO 12 governs what gets acted on during a session. Framed as a methodology-side rule on its own merits, with no origin incident named.
+**Next:** Carry-over from SESSION_01 remains open — fix the README `prompts/` path discrepancy; add `.gitignore`; decide the DAOBoard inscription path.
 
 ---
 

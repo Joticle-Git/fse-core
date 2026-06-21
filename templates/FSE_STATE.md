@@ -35,6 +35,21 @@ If there are no blockers, write: *None.*
 
 Open decisions are recorded in `FSE.md`'s OPEN DECISIONS block; as each is cleared, the decision and the session that cleared it are noted here.
 
+## Planning Provenance
+
+Per Universal Standing Order 12, every element of a plan, discovery, or design is tagged by where it came from:
+
+- **D (Directed)** — explicitly requested by the operator; traceable to a specific directive.
+- **E (Extrapolated)** — logically required by a directed requirement; stated alongside the requirement it derives from so the logic can be checked.
+- **I (Inferred)** — not directed; a best-practice or modeling judgment call nobody asked for.
+- **S (Scaffold)** — generic platform, framework, or architectural convention (audit columns, CRUD plumbing, soft-delete patterns).
+
+Before any build begins, list every **Inferred (I)** element below as a separate, explicit block for operator confirmation. Directed and Extrapolated elements reference their source; Scaffold is exempt from surfacing.
+
+### Inferred elements awaiting confirmation
+
+*None.*
+
 ## Next Session Priorities
 
 Ordered list. The next session starts at the top.
