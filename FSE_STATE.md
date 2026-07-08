@@ -5,8 +5,8 @@ This file is updated at the end of every session. It is the single source of tru
 ## Identity
 
 - **Project:** fse-core — the FlowState Engineering methodology repository
-- **FSE Version:** 1.2.0
-- **Last Updated:** 2026-07-01
+- **FSE Version:** 1.2.1
+- **Last Updated:** 2026-07-07
 - **Last Session By:** Scott Michael Wilson
 
 ## Build State
@@ -62,10 +62,22 @@ N/A — no build. The gate is documentation integrity.
 | SESSION_01 | 2026-06-08 | Adopt FSE self-hosting — author root `FSE.md`, `FSE_STATE.md`, `FSE_DISCOVERY.md` + `.claude/instructions.md` wiring | success | (no separate report — recorded inline under Session History) |
 | SESSION_02 | 2026-06-18 | Promote Planning Provenance to USO 12 — methodology v1.0.0 → v1.1.0 | success | (no separate report — recorded inline under Session History) |
 | SESSION_03 | 2026-07-01 | Promote Query Artifact Discipline to USO 13 — methodology v1.1.0 → v1.2.0 | success | (no separate report — recorded inline under Session History) |
+| SESSION_04 | 2026-07-07 | Single-interface terminology correction — retire "CLI invocation/session/run" from the methodology block; methodology v1.2.0 → v1.2.1 | success | (no separate report — recorded inline under Session History) |
 
 ## Session History
 
 Most recent session first. Each entry is short — the diff tells the story of *what*; this log captures *why*.
+
+---
+
+### SESSION_04 — 2026-07-07 — Single-interface terminology correction (methodology v1.2.1)
+**Goal:** Retire tool-boundary–flavored language from the methodology block. The methodology's planning/execution separation is an approval gate, not a two-app tool boundary; the operator runs a single interface (Claude Code Desktop), one project per Holding tab.
+**Done:**
+- Swept `CLI invocation / CLI session / CLI run / CLI-generated` from the *Session Numbering & Artifact Lifecycle* section of both the root `FSE.md` and the published master `templates/FSE.md`. A session is now defined as "one complete assistant session," and identifiers "count sessions, not git operations." Wording kept tool-agnostic per USO contract (`README.md` — "works with Claude Code, Cursor, Copilot, Windsurf, Aider").
+- Bumped `VERSION` 1.2.0 → 1.2.1 — editing the `FSE START … FSE END` block is a version event.
+**Reasoning:** fse-core never encoded a two-app separation; its PLAN phase was already the tool-agnostic approval gate. The only anachronism at the source was the "CLI invocation/run" phrasing, which reads as if a session is bound to a command-line tool. The change is terminological and backward compatible, so a patch bump (1.2.0 → 1.2.1), not minor: no new standing order, no PLAN-phase mechanics, no template output convention. Plan-mode enforcement language and the USO 12 single-interface reinforcement were considered and deferred — they would name a tool-specific feature inside the tool-agnostic constitution; that framing belongs in the fse-website Holding and tool-setup docs, not Core.
+**Related Holding:** The public two-app framing ("Claude Web is the planning layer / Claude Code is the execution layer") lives in `Joticle/fse-website` (`Pages/HowItWorks.cshtml`), reframed to two *modes* in the same coordinated change — tracked in that repo's own state file.
+**Next:** Carry-over remains open — fix the README `prompts/` path discrepancy; land the parked S87 secret-scan WIP (`.gitignore` + `tooling/secret-scan/`); decide the DAOBoard inscription path.
 
 ---
 

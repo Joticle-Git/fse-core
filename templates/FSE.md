@@ -142,7 +142,7 @@ Sessions are numbered. Session artifacts have a lifecycle. Both are universal ac
 
 ### Session Numbering
 
-Every CLI session has a unique, sequential identifier within the project. Numbering is project-local — each project counts independently.
+Every session has a unique, sequential identifier within the project. Numbering is project-local — each project counts independently.
 
 A project picks one of two valid numbering schemes and stays consistent within itself:
 
@@ -156,9 +156,9 @@ A project picks one of two valid numbering schemes and stays consistent within i
 - Branch points (e.g., `2A.1` and `2A.2`) and refinements (e.g., `2A.1.1`) are valid.
 
 Both schemes share the same rules:
-- A session is one CLI invocation that runs to completion (success, partial completion, or clean stop).
+- A session is one complete assistant session that runs to completion (success, partial completion, or clean stop).
 - Identifiers are unique and never reused. Failed or reverted sessions still consume an identifier.
-- Identifiers persist across branches and phases. They count CLI runs, not git operations.
+- Identifiers persist across branches and phases. They count sessions, not git operations.
 
 The session identifier appears in:
 - **Prompt headers** — `SESSION 08 — PHASE 1 RUN 2: <SCOPE>` or `SESSION 2B.1.2 — <SCOPE>`
@@ -170,7 +170,7 @@ The term "overnight run" is dropped. Replace with "session" or "unattended sessi
 
 ### Artifact Lifecycle
 
-Session reports and other CLI-generated artifacts move through two phases. The Tier scheme above describes *what* a document is; the Lifecycle describes *where it lives based on age and relevance*.
+Session reports and other session-generated artifacts move through two phases. The Tier scheme above describes *what* a document is; the Lifecycle describes *where it lives based on age and relevance*.
 
 **Active** — `/sessions/active/`
 - New session reports are born here.
