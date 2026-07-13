@@ -39,9 +39,10 @@ No decisions are currently open. The four SESSION_01 adoption decisions were mad
 
 ## Next Session Priorities
 
-1. Decide the DAOBoard inscription path — the Public Surface Discipline standing order (`docs/methodology/daoboard/NOTIFICATION-2026-05-17.md`) is notified but not yet inscribed. Session N+1 of the arc authors the schema + example and inscribes the standing order; it is a minor version event (→ 1.3.0) and needs explicit operator go.
-2. Refresh the public README to the current methodology — header still reads "version 1.0.0" (actual 1.2.1) and the "Universal Standing Orders" section lists only 7 orders (actual 13). Tracked in `FSE_DISCOVERY.md`.
-3. Audit fse-extensions content status (separate repository) — DAOBoard aggregator and .NET extension state (tracked gap).
+1. Pin-model USO promotion (notification-gated) — promote the pin/conformance model in `templates/FSE_CONFORMANCE.md` (added SESSION_06) to a standing order via a filed notification + version event. **This session MUST confirm/update the hardcoded raw fetch base `raw.githubusercontent.com/Joticle/fse-core`** if the org transfer to `Joticle-Git` has finalized — every holding's VERIFY fetch depends on that URL resolving.
+2. Decide the DAOBoard inscription path — the Public Surface Discipline standing order (`docs/methodology/daoboard/NOTIFICATION-2026-05-17.md`) is notified but not yet inscribed. Session N+1 of the arc authors the schema + example and inscribes the standing order; it is a minor version event (→ 1.3.0) and needs explicit operator go.
+3. Refresh the public README to the current methodology — header still reads "version 1.0.0" (actual 1.2.1) and the "Universal Standing Orders" section lists only 7 orders (actual 13). Tracked in `FSE_DISCOVERY.md`.
+4. Audit fse-extensions content status (separate repository) — DAOBoard aggregator and .NET extension state (tracked gap).
 
 ## Warning Baseline
 
@@ -64,10 +65,22 @@ N/A — no build. The gate is documentation integrity.
 | SESSION_03 | 2026-07-01 | Promote Query Artifact Discipline to USO 13 — methodology v1.1.0 → v1.2.0 | success | (no separate report — recorded inline under Session History) |
 | SESSION_04 | 2026-07-09 | Single-interface terminology correction — retire "CLI invocation/session/run" from the methodology block; methodology v1.2.0 → v1.2.1 | success | (no separate report — recorded inline under Session History) |
 | SESSION_05 | 2026-07-09 | Clear parked queue — fix README `prompts/` path + structure; land S87 secret-scan (`.gitignore` + hook + README) | success | (no separate report — recorded inline under Session History) |
+| SESSION_06 | 2026-07-09 | Add `templates/FSE_CONFORMANCE.md` — pin/conformance model spec + template (doc-only, no version event) | success | (no separate report — recorded inline under Session History) |
 
 ## Session History
 
 Most recent session first. Each entry is short — the diff tells the story of *what*; this log captures *why*.
+
+---
+
+### SESSION_06 — 2026-07-09 — Add FSE_CONFORMANCE.md spec + template (pin/conformance model)
+**Goal:** Introduce the pin/conformance model as a copyable methodology artifact — holdings stop transcribing universal FSE rules and instead pin an fse-core version, record only local bindings + a deviation ledger, and fetch universal rules from fse-core at the pinned tag during VERIFY.
+**Done:**
+- Added `templates/FSE_CONFORMANCE.md`: one fenced yaml block (parsed by fse-doctor, read by humans at VERIFY) carrying `fse_core_pin`, `bindings`, and a `deviations` ledger, plus field reference and rules. Public-sanitized — every example value generic/fictional (`holding: ExampleHolding`, `css_prefix: "--ex-"`, `scope: src/**/Example/*.cshtml`); zero holding/codename/client values.
+- Two convention adjustments vs the source text, to match live fse-core names so the anti-drift artifact does not itself plant drift: `SESSION_STATE.md → FSE_STATE.md` (warning_baseline home) and `CLAUDE_POLICE.md/CLAUDE_SCHEMA.md → FSE_POLICE.md/FSE_SCHEMA.md` (tier2_present example).
+**Scope guard:** Doc-only. `FSE.md` unchanged, `VERSION` unchanged (stays 1.2.1), no USO added, no version event. The pin-model USO promotion and its version event remain a separate, notification-gated session.
+**Load-bearing dependency (carry forward):** The spec hardcodes the raw fetch base `raw.githubusercontent.com/Joticle/fse-core` — every holding's VERIFY fetches universal rules from it. The org transfer to `Joticle-Git` is in progress (observed as a push redirect this session); if it finalizes, this base moves and every conformance file points at a dead source. The pin-model USO session MUST confirm/update this URL as part of promotion.
+**Next:** Notification-gated pin-model USO promotion (also resolves the fetch-base URL). Until then FSE_CONFORMANCE.md is a published template only, not yet a standing order.
 
 ---
 
