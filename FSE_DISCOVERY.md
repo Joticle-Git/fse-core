@@ -63,7 +63,6 @@ Items that do not apply to a documentation repository are marked **N/A** explici
 
 | Gap | Impact | Priority | Owner |
 |-----|--------|----------|-------|
-| README public methodology summary is a version behind — header still reads "version 1.0.0" (actual `VERSION` is 1.2.1) and the "Universal Standing Orders" section lists only 7 orders (actual USOs run to 13) | Public README understates the current methodology; a reader comparing the README to the live standing orders sees a mismatch | Med | Scott Michael Wilson |
 | fse-extensions content status not audited this session | DAOBoard aggregator and .NET extension state is unknown from within fse-core (separate repository) | Low | Scott Michael Wilson |
 
 Close a gap by fixing it and removing the row. Large gaps graduate to `FSE_STATE.md` as priorities.

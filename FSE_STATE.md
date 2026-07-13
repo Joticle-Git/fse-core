@@ -41,8 +41,7 @@ No decisions are currently open. The four SESSION_01 adoption decisions were mad
 
 1. Pin-model USO promotion (notification-gated) — promote the pin/conformance model in `templates/FSE_CONFORMANCE.md` (added SESSION_06) to a standing order via a filed notification + version event. **This session MUST confirm/update the hardcoded raw fetch base `raw.githubusercontent.com/Joticle/fse-core`** if the org transfer to `Joticle-Git` has finalized — every holding's VERIFY fetch depends on that URL resolving.
 2. Decide the DAOBoard inscription path — the Public Surface Discipline standing order (`docs/methodology/daoboard/NOTIFICATION-2026-05-17.md`) is notified but not yet inscribed. Session N+1 of the arc authors the schema + example and inscribes the standing order; it is a minor version event (→ 1.3.0) and needs explicit operator go.
-3. Refresh the public README to the current methodology — header still reads "version 1.0.0" (actual 1.2.1) and the "Universal Standing Orders" section lists only 7 orders (actual 13). Tracked in `FSE_DISCOVERY.md`.
-4. Audit fse-extensions content status (separate repository) — DAOBoard aggregator and .NET extension state (tracked gap).
+3. Audit fse-extensions content status (separate repository) — DAOBoard aggregator and .NET extension state (tracked gap).
 
 ## Warning Baseline
 
@@ -66,10 +65,19 @@ N/A — no build. The gate is documentation integrity.
 | SESSION_04 | 2026-07-09 | Single-interface terminology correction — retire "CLI invocation/session/run" from the methodology block; methodology v1.2.0 → v1.2.1 | success | (no separate report — recorded inline under Session History) |
 | SESSION_05 | 2026-07-09 | Clear parked queue — fix README `prompts/` path + structure; land S87 secret-scan (`.gitignore` + hook + README) | success | (no separate report — recorded inline under Session History) |
 | SESSION_06 | 2026-07-09 | Add `templates/FSE_CONFORMANCE.md` — pin/conformance model spec + template (doc-only, no version event) | success | (no separate report — recorded inline under Session History) |
+| SESSION_07 | 2026-07-09 | Refresh public README — version 1.0.0 → 1.2.1, standing-orders list 7 → 13 (doc-only) | success | (no separate report — recorded inline under Session History) |
 
 ## Session History
 
 Most recent session first. Each entry is short — the diff tells the story of *what*; this log captures *why*.
+
+---
+
+### SESSION_07 — 2026-07-09 — Refresh public README to current methodology
+**Goal:** Close the tracked gap where the public README lagged the methodology.
+**Done:** README header `1.0.0 → 1.2.1`; extended the "Universal Standing Orders" summary from 7 to all 13 (condensed one-liners added for USO 8–13: Token-First Construction, Pattern-First Design, Visual Validation Phase, Bedrock Authoring Guard, Planning Provenance, Query Artifact Discipline). Removed the corresponding `FSE_DISCOVERY.md` gap row.
+**Scope guard:** Doc-only. No `FSE.md` or `VERSION` change, no version event — `VERSION` was already 1.2.1; this only aligns the human-facing README to the source of truth.
+**Next:** Pin-model USO promotion (+ fetch-base URL) and DAOBoard inscription remain the open items.
 
 ---
 

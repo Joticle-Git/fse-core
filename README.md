@@ -2,7 +2,7 @@
 
 **The constraint-based AI development methodology.**
 
-**FSE methodology version: 1.0.0**
+**FSE methodology version: 1.2.1**
 
 > Your AI assistant forgets everything between sessions. FSE makes it remember.
 
@@ -106,6 +106,12 @@ These apply to every FSE project regardless of stack. Stack-specific orders live
 5. Self-healing build loop runs after every change
 6. Never commit a broken build
 7. Credentials are never output, committed, or referenced in conversation
+8. Token-First Construction — every visual CSS value references a project design token; no hard-coded literals
+9. Pattern-First Design — reuse an existing UI pattern before building a new one; new patterns are proposed and documented first
+10. Visual Validation Phase — every UI-touching session ends by comparing changed pages against the documented patterns
+11. Bedrock Authoring Guard — never fill a foundation-file decision with a plausible default; leave undecided sections explicitly open
+12. Planning Provenance — tag every plan element Directed / Extrapolated / Inferred / Scaffold; surface inferences before building
+13. Query Artifact Discipline — schema changes are explicit versioned artifacts; queries are centralized and named; cross-boundary access is marked
 
 ---
 
