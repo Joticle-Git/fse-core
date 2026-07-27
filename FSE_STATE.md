@@ -5,7 +5,7 @@ This file is updated at the end of every session. It is the single source of tru
 ## Identity
 
 - **Project:** fse-core — the FlowState Engineering methodology repository
-- **FSE Version:** 1.3.1
+- **FSE Version:** 1.4.0
 - **Last Updated:** 2026-07-26
 - **Last Session By:** Scott Michael Wilson
 
@@ -96,10 +96,24 @@ N/A — no build. The gate is documentation integrity.
 | SESSION_09 | 2026-07-13 | Build fse-doctor — conformance validator + pin drift + structural pass (`tooling/fse-doctor/`) | success | (no separate report — recorded inline under Session History) |
 | SESSION_10 | 2026-07-26 | Promote Executable Enforcement to USO 14 — methodology v1.2.1 → v1.3.0; add `CHANGELOG.md` | success | (no separate report — recorded inline under Session History) |
 | SESSION_11 | 2026-07-26 | Backfill USO 12/13 + PLAN provenance steps into `templates/FSE.md`; add block-parity check — v1.3.0 → v1.3.1 | success | (no separate report — recorded inline under Session History) |
+| SESSION_12 | 2026-07-26 | Retire four dead rules (USO 2, EXECUTE 1/2/4); close the rule-classification arc unimplemented — v1.3.1 → v1.4.0 | success | (no separate report — recorded inline under Session History) |
 
 ## Session History
 
 Most recent session first. Each entry is short — the diff tells the story of *what*; this log captures *why*.
+
+---
+
+### SESSION_12 — 2026-07-26 — Retire dead rules; reject the classification taxonomy (v1.4.0)
+**Goal:** Make the constitution clean and defensible by removing rules that practice had already abandoned, without adding governance machinery to manage them.
+**Done:**
+- Retired four rules, each contradicted by ordinary practice without cost: **USO 2** (complete file contents every time), **EXECUTE 1** (one file at a time), **EXECUTE 2** (the EXECUTE-phase restatement of USO 2), **EXECUTE 4** (wait for confirmation between files). USO 1 already forbids incomplete implementations and the PLAN approval gate already governs authorization, so nothing was lost.
+- USO 2 is **withdrawn in place**, not renumbered: `tooling/fse-doctor` and downstream holdings cite standing orders by number, so numbers are stable and never reused. Protocol steps are internal to their phase and were renumbered.
+- Applied identically to the root and the published template; block-parity confirms the blocks are byte-identical (281 lines). `VERSION` 1.3.1 → 1.4.0, tagged `v1.4.0`.
+- Closed the **Rule Classification** arc without implementation. `RESOLUTION-2026-07-26.md` records why beside the notification that opened it.
+**Reasoning:** The classification amendment would have added a permanent governance layer — class tags, stated failure modes, review triggers, a retirement path — to the constitution in order to schedule a decision that could simply be made. Everything the taxonomy promised was obtainable by deleting the four rules that had already expired. A methodology carrying a governance layer for its own rules is heavier to read and adopt and no more correct. Removing constraints does not invalidate existing conformance, so this is a minor bump.
+**Process note:** the elaborate notification format used in recent arcs is not required by the standing order, which asks only for intent, placement, protections, and scope. The resolution filed here is one page. The proclamation style was accretion, not methodology.
+**Next:** Pin-model USO promotion remains the open amendment; the vacuous-gate debt and pilot adoption of fse-doctor remain open.
 
 ---
 

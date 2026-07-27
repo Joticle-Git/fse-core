@@ -2,7 +2,7 @@
 
 **The constraint-based AI development methodology.**
 
-**FSE methodology version: 1.3.1**
+**FSE methodology version: 1.4.0**
 
 > Your AI assistant forgets everything between sessions. FSE makes it remember.
 
@@ -58,7 +58,7 @@ Every coding session follows the same four phases:
 
 - **VERIFY** — Read the foundation files. Check the build. Confirm what exists. Note open technical debt.
 - **PLAN** — State what will be built. List files that will change. Get approval before writing.
-- **EXECUTE** — One file at a time. Complete code only. No stubs. Wait for confirmation between files.
+- **EXECUTE** — Complete code only. No stubs. No silent scope expansion.
 - **VALIDATE** — Run the self-healing build loop. Confirm 0 errors. Update `FSE_STATE.md`.
 
 ### Self-Healing Build Loop
@@ -100,7 +100,7 @@ The three foundation files above. Every FSE project has these.
 These apply to every FSE project regardless of stack. Stack-specific orders live in extensions.
 
 1. No stubs, TODOs, placeholders, or `NotImplementedException`
-2. No snippets or partial code — complete file contents every time
+2. *(withdrawn in v1.4.0 — numbers are never reused)*
 3. Never assume file contents — always read or ask first
 4. Never change styling or functionality outside the current task scope
 5. Self-healing build loop runs after every change

@@ -39,11 +39,8 @@ One approval covers one plan. A new scope means a new plan.
 ### 3. EXECUTE
 Once approved:
 
-1. Work one file at a time.
-2. Output complete file contents — never snippets, diffs, or partial implementations.
-3. No stubs, TODOs, or placeholder functions. If a piece is unknown, stop and ask.
-4. After each file, wait for confirmation before moving to the next file.
-5. Do not change code outside the agreed scope. If adjacent cleanup is warranted, surface it — do not silently make the edit.
+1. No stubs, TODOs, or placeholder functions. If a piece is unknown, stop and ask.
+2. Do not change code outside the agreed scope. If adjacent cleanup is warranted, surface it — do not silently make the edit.
 
 ### 4. VALIDATE
 After every change:
@@ -125,7 +122,7 @@ The ~15KB rule is a split trigger, not a hard cap on file size — it applies to
 These apply to every FSE project, regardless of stack.
 
 1. **No stubs, TODOs, placeholders, or incomplete implementations.** If it isn't finished, it doesn't get written.
-2. **No snippets or partial code.** Output complete file contents every time.
+2. *Withdrawn in v1.4.0. Standing-order numbers are never reused — see `CHANGELOG.md`.*
 3. **Never assume file contents or existence.** Always read the current file, or list the directory, or ask before modifying or referencing any file.
 4. **Never change styling, functionality, or configuration outside the current task scope.** Implicit refactors — cleaning up imports, reorganizing DI registrations, "while I'm here" tweaks — are protocol violations regardless of intent. Build-fix edits are limited to the file under active edit. If resolving the build requires changes to any other file, halt and surface a re-plan request. Do not expand scope silently.
 5. **The self-healing build loop runs after every change.** No exceptions.

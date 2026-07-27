@@ -15,6 +15,35 @@ This project follows [Semantic Versioning](https://semver.org/):
 
 Dates are the release (tag) dates.
 
+## [1.4.0] — 2026-07-26
+
+### Removed
+- **Four dead rules retired.** Each was contradicted by ordinary practice without
+  cost, which is the working definition of a dead rule. Assistants apply precise,
+  verified edits directly, so the whole-file delivery mechanic guarded a failure
+  mode that no longer occurs.
+  - **USO 2** — "No snippets or partial code. Output complete file contents every
+    time." USO 1 already forbids incomplete implementations. Withdrawn *in place*:
+    standing-order numbers are stable and never reused, because `tooling/fse-doctor`
+    and downstream holdings cite them by number.
+  - **EXECUTE 1** — "Work one file at a time."
+  - **EXECUTE 2** — the EXECUTE-phase restatement of USO 2.
+  - **EXECUTE 4** — "After each file, wait for confirmation before moving to the
+    next file." The PLAN-phase approval gate already governs authorization.
+
+  Removing constraints does not invalidate existing conformance — a project that
+  followed the retired rules still conforms — so this is a minor bump, not major.
+
+### Changed
+- The `Rule Classification` amendment arc
+  (`docs/methodology/rule-classification/`) was opened and closed **without
+  implementation**. It proposed tagging every rule `INVARIANT` or `COMPENSATING`
+  with review triggers and a governed retirement path; on review the taxonomy was
+  judged overhead, since everything it promised was obtainable by retiring the rules
+  that had already expired. The reasoning is recorded in `RESOLUTION-2026-07-26.md`
+  beside the notification — a considered-and-rejected amendment is part of the
+  lineage.
+
 ## [1.3.1] — 2026-07-26
 
 ### Fixed
@@ -90,6 +119,7 @@ Dates are the release (tag) dates.
   Orders 1–11, Session Numbering & Artifact Lifecycle, and the Module Pattern
   (Context-Bounded Context).
 
+[1.4.0]: https://github.com/Joticle-Git/fse-core/releases/tag/v1.4.0
 [1.3.1]: https://github.com/Joticle-Git/fse-core/releases/tag/v1.3.1
 [1.3.0]: https://github.com/Joticle-Git/fse-core/releases/tag/v1.3.0
 [1.2.1]: https://github.com/Joticle-Git/fse-core/releases/tag/v1.2.1
