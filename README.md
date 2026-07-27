@@ -2,7 +2,7 @@
 
 **The constraint-based AI development methodology.**
 
-**FSE methodology version: 1.3.0**
+**FSE methodology version: 1.3.1**
 
 > Your AI assistant forgets everything between sessions. FSE makes it remember.
 
@@ -218,6 +218,7 @@ fse-core/
   tooling/               ← zero-dependency enforcement scripts (USO 14)
     fse-doctor/          ← conformance validator, pin drift, structural pass
     secret-scan/         ← pre-push secret scanner
+    block-parity/        ← fails if FSE.md and templates/FSE.md diverge
   docs/                  ← methodology extension notifications & specs
     methodology/
   .github/               ← issue templates, PR template

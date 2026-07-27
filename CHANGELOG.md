@@ -15,6 +15,27 @@ This project follows [Semantic Versioning](https://semver.org/):
 
 Dates are the release (tag) dates.
 
+## [1.3.1] — 2026-07-26
+
+### Fixed
+- **The published template was missing two standing orders.** `templates/FSE.md` —
+  the artifact adopters copy — carried Universal Standing Orders 1–11 and the
+  pre-1.1.0 PLAN phase. USO 12 (Planning Provenance), USO 13 (Query Artifact
+  Discipline), and the PLAN-phase provenance steps were added to the root `FSE.md`
+  during the 1.1.0 and 1.2.0 arcs but never backfilled into the template, because
+  neither arc listed `templates/FSE.md` in its file list. Adopting from the template
+  between 1.1.0 and 1.3.0 produced a constitution missing two rules. The methodology
+  block is now byte-identical in both files; no rule text changed, so this is a
+  patch, not a re-release of 1.3.0.
+
+### Added
+- `tooling/block-parity/check-block-parity.sh` — fails the build when the
+  methodology block in `FSE.md` and `templates/FSE.md` diverge, and fails loudly
+  (exit 2) when it cannot run rather than reporting green. The published-contract
+  rule previously existed only as prose, which is how it drifted for two releases.
+  Per USO 14, the check was verified by observing it fail on the actual historical
+  violation before being trusted.
+
 ## [1.3.0] — 2026-07-26
 
 ### Added
@@ -69,6 +90,7 @@ Dates are the release (tag) dates.
   Orders 1–11, Session Numbering & Artifact Lifecycle, and the Module Pattern
   (Context-Bounded Context).
 
+[1.3.1]: https://github.com/Joticle-Git/fse-core/releases/tag/v1.3.1
 [1.3.0]: https://github.com/Joticle-Git/fse-core/releases/tag/v1.3.0
 [1.2.1]: https://github.com/Joticle-Git/fse-core/releases/tag/v1.2.1
 [1.2.0]: https://github.com/Joticle-Git/fse-core/releases/tag/v1.2.0

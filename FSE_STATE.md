@@ -5,7 +5,7 @@ This file is updated at the end of every session. It is the single source of tru
 ## Identity
 
 - **Project:** fse-core — the FlowState Engineering methodology repository
-- **FSE Version:** 1.3.0
+- **FSE Version:** 1.3.1
 - **Last Updated:** 2026-07-26
 - **Last Session By:** Scott Michael Wilson
 
@@ -52,7 +52,21 @@ N/A — no build. The gate is documentation integrity.
 
 ## Lessons Learned
 
-*No lessons recorded yet.*
+1. **A version event's scope is whatever the notification lists — so it must list `templates/*`.**
+   The v1.1.0 and v1.2.0 arcs each amended the root `FSE.md` and omitted
+   `templates/FSE.md` from their file lists. Both times the published contract fell a
+   release behind the constitution, and the gap was invisible until a third arc
+   appended to the template and exposed the numbering hole. Treat `templates/*` as
+   in-scope by default for any methodology-block change.
+2. **A rule kept as prose degrades; the response to breaching one is to encode it.**
+   "Templates are published contracts" was a ratified standing order and still drifted
+   twice, because nothing executed it. The fix that lasts is
+   `tooling/block-parity/check-block-parity.sh`, not a resolution to be more careful.
+   This is USO 14 applied to the repository that authored it.
+3. **Verify a guard by watching it fail.** The block-parity check and the fse-doctor
+   glob translator were both proven by injecting a known violation. In the fse-doctor
+   case that step caught a bug that would have silently disabled every scoped
+   deviation; a guard trusted on the strength of a green first run would have shipped it.
 
 ## Known Technical Debt
 
@@ -81,10 +95,25 @@ N/A — no build. The gate is documentation integrity.
 | SESSION_08 | 2026-07-09 | Resolve pin-model fetch base → canonical `Joticle-Git/fse-core`; repoint local origin (doc-only) | success | (no separate report — recorded inline under Session History) |
 | SESSION_09 | 2026-07-13 | Build fse-doctor — conformance validator + pin drift + structural pass (`tooling/fse-doctor/`) | success | (no separate report — recorded inline under Session History) |
 | SESSION_10 | 2026-07-26 | Promote Executable Enforcement to USO 14 — methodology v1.2.1 → v1.3.0; add `CHANGELOG.md` | success | (no separate report — recorded inline under Session History) |
+| SESSION_11 | 2026-07-26 | Backfill USO 12/13 + PLAN provenance steps into `templates/FSE.md`; add block-parity check — v1.3.0 → v1.3.1 | success | (no separate report — recorded inline under Session History) |
 
 ## Session History
 
 Most recent session first. Each entry is short — the diff tells the story of *what*; this log captures *why*.
+
+---
+
+### SESSION_11 — 2026-07-26 — Repair the published template; encode the contract as a check (v1.3.1)
+**Goal:** Fix a published-contract breach found immediately after the v1.3.0 release, and enforce the rule that was breached.
+**The defect:** `templates/FSE.md` — the artifact adopters copy — contained Universal Standing Orders 1–11 and the pre-1.1.0 PLAN phase. USO 12, USO 13, and the PLAN-phase provenance steps had been added to the root `FSE.md` in the v1.1.0 and v1.2.0 arcs but never backfilled, because neither arc listed `templates/FSE.md` in its scope. Appending USO 14 in SESSION_10 published a template reading 1…11, 14 — a visible numbering gap, and a constitution missing two rules for anyone who adopted from it between 1.1.0 and 1.3.0. It also broke conformance grading: `tooling/fse-doctor` evaluates holdings against USO-13, which that template did not contain.
+**Found by:** an external review of the v1.3.0 diff, not by this repository's own checks — which is the point of the fix below.
+**Done:**
+- Backfilled PLAN steps 3–4, USO 12 and USO 13 into `templates/FSE.md`, spliced verbatim from the root rather than retyped. Normalized the standing-order list in both files to a tight (non-loose) markdown list. Verified the `FSE START … FSE END` blocks are now **byte-identical** (284 lines).
+- Added `tooling/block-parity/check-block-parity.sh`: fails when the two blocks diverge, and exits 2 — never 0 — when it cannot run (not in a repo, unreadable file, missing or unterminated marker). Per USO 14 clause 3 it was proven before being trusted: observed passing on the corrected tree, **failing on the real historical violation** (USO 13 removed from the template), and refusing to run rather than reporting green when pointed at the wrong repository.
+- `VERSION` 1.3.0 → 1.3.1, tagged `v1.3.1`. No rule text changed — the constitution already said 1…14; only the published copy was wrong — so this is a patch. v1.3.0 was left tagged rather than re-cut, since retagging a pushed public release is worse than shipping a corrective patch.
+**Reasoning:** This is precisely the failure USO 14 describes, committed by the repository that had just promoted it. "Templates are published contracts" was a Project-Specific Standing Order carried as prose, and nothing checked it, so it drifted silently across two releases. Prose rules degrade; the honest response to breaching one is to encode it, not to resolve to be more careful. A version-event checklist would have caught this once; the check catches it every time.
+**Lesson recorded:** a methodology version event must treat `templates/*` as in-scope by default. The notification's file list is the scope gate, and both prior arcs simply omitted it.
+**Next:** Close the vacuous-gate debt; wire fse-doctor into a pilot holding.
 
 ---
 
