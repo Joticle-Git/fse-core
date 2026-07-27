@@ -5,8 +5,8 @@ This file is updated at the end of every session. It is the single source of tru
 ## Identity
 
 - **Project:** fse-core — the FlowState Engineering methodology repository
-- **FSE Version:** 1.2.1
-- **Last Updated:** 2026-07-09
+- **FSE Version:** 1.3.0
+- **Last Updated:** 2026-07-26
 - **Last Session By:** Scott Michael Wilson
 
 ## Build State
@@ -39,10 +39,12 @@ No decisions are currently open. The four SESSION_01 adoption decisions were mad
 
 ## Next Session Priorities
 
-1. **Pin-model USO promotion** (notification-gated, version event) — promote the pin/conformance model to a standing order via a filed notification. Both blockers are now cleared: fetch base resolved (SESSION_08) and fse-doctor built + schema validated (SESSION_09). Must inscribe: (a) fse-core stays **public** — holdings fetch rules unauthenticated over raw; (b) `tooling/fse-doctor/` is the enforcer, version-locked to the schema by the same pin.
-2. Wire fse-doctor as a gate in a pilot holding — add `FSE_CONFORMANCE.md` to one holding and run fse-doctor in CI or a `pre-push` hook (alongside `secret-scan`). Until a holding actually runs it, the model is validated but unadopted.
-3. Decide the DAOBoard inscription path — the Public Surface Discipline standing order (`docs/methodology/daoboard/NOTIFICATION-2026-05-17.md`) is notified but not yet inscribed. Session N+1 of the arc authors the schema + example and inscribes the standing order; it is a minor version event (→ 1.3.0) and needs explicit operator go.
-4. Audit fse-extensions content status (separate repository) — DAOBoard aggregator and .NET extension state (tracked gap). Partially answered in SESSION_08: no fse-doctor/conformance tooling exists there.
+1. **Close the vacuous-gate debt (USO 14, self-application).** Fix the methodology website's test step so it cannot pass without verifying anything, and audit the other holdings' gates for the same shape — empty subject set, skip-on-unreachable-dependency, silently non-matching filter. The standing order binds forward, but this estate's own known instance should not sit open.
+2. **Pin-model USO promotion** (notification-gated, version event) — promote the pin/conformance model to a standing order via a filed notification. Both blockers are now cleared: fetch base resolved (SESSION_08) and fse-doctor built + schema validated (SESSION_09). Must inscribe: (a) fse-core stays **public** — holdings fetch rules unauthenticated over raw; (b) `tooling/fse-doctor/` is the enforcer, version-locked to the schema by the same pin.
+3. Wire fse-doctor as a gate in a pilot holding — add `FSE_CONFORMANCE.md` to one holding and run fse-doctor in CI or a `pre-push` hook (alongside `secret-scan`). Until a holding actually runs it, the model is validated but unadopted.
+4. Carry the stack-specific enforcement mechanics into fse-extensions (`dotnet/`) — architecture tests as build-time guards, and relational-fixture testing for retrying execution strategies. These are USO 14 bindings, not principles: they name a framework and a provider, so they belong in the stack extension, not in Core.
+5. Decide the DAOBoard inscription path — the Public Surface Discipline standing order (`docs/methodology/daoboard/NOTIFICATION-2026-05-17.md`) is notified but not yet inscribed. Session N+1 of the arc authors the schema + example and inscribes the standing order; it is a minor version event (next minor after 1.3.0) and needs explicit operator go.
+6. Audit fse-extensions content status (separate repository) — DAOBoard aggregator and .NET extension state (tracked gap). Partially answered in SESSION_08: no fse-doctor/conformance tooling exists there.
 
 ## Warning Baseline
 
@@ -54,7 +56,16 @@ N/A — no build. The gate is documentation integrity.
 
 ## Known Technical Debt
 
-*No technical debt recorded yet.*
+1. **Vacuous test gate in the methodology website's CI (USO 14 violation, live).** The
+   deploy pipeline runs a test step against a solution containing no test project; it
+   exits zero and reports green, satisfying the gate while verifying nothing. Recorded
+   here rather than quietly fixed because it is the exact failure USO 14 names, and it
+   was introduced by this estate, not inherited. Remediation: either add a test project
+   with at least one real assertion, or make the step fail when it discovers no tests.
+2. **Session-log dates diverge from git commit dates.** Entries in this file carry dates
+   that do not match the underlying commits (e.g. the v1.2.1 arc is logged as 2026-07-09
+   but tagged 2026-07-07). `CHANGELOG.md` is authored from tag dates and is authoritative
+   for releases. The session log should be reconciled to git truth in a later pass.
 
 ## Session Log
 
@@ -69,10 +80,26 @@ N/A — no build. The gate is documentation integrity.
 | SESSION_07 | 2026-07-09 | Refresh public README — version 1.0.0 → 1.2.1, standing-orders list 7 → 13 (doc-only) | success | (no separate report — recorded inline under Session History) |
 | SESSION_08 | 2026-07-09 | Resolve pin-model fetch base → canonical `Joticle-Git/fse-core`; repoint local origin (doc-only) | success | (no separate report — recorded inline under Session History) |
 | SESSION_09 | 2026-07-13 | Build fse-doctor — conformance validator + pin drift + structural pass (`tooling/fse-doctor/`) | success | (no separate report — recorded inline under Session History) |
+| SESSION_10 | 2026-07-26 | Promote Executable Enforcement to USO 14 — methodology v1.2.1 → v1.3.0; add `CHANGELOG.md` | success | (no separate report — recorded inline under Session History) |
 
 ## Session History
 
 Most recent session first. Each entry is short — the diff tells the story of *what*; this log captures *why*.
+
+---
+
+### SESSION_10 — 2026-07-26 — Promote Executable Enforcement to USO 14 (methodology v1.3.0)
+**Goal:** Inscribe Executable Enforcement into the methodology constitution as Universal Standing Order 14.
+**Done:**
+- Filed the opening notification artifact `docs/methodology/executable-enforcement/NOTIFICATION-2026-07-26.md` before any methodology edit, per the notification-before-implementation standing order (commit `31d4513`).
+- Added USO 14 to the Universal Standing Orders in the root `FSE.md` and the published `templates/FSE.md`. No PLAN-phase mechanics and no template output convention — a standing-order addition only.
+- Bumped `VERSION` 1.2.1 → 1.3.0 and tagged `v1.3.0` — editing the `FSE START … FSE END` block is a version event.
+- Added `CHANGELOG.md`, backfilled 1.0.0 → 1.3.0 from the **tag** history (git release dates, which differ from the session-log dates recorded in this file — see Known Technical Debt).
+- Refreshed `README.md`: version 1.2.1 → 1.3.0, standing-order list 13 → 14, and the structure block now lists `CHANGELOG.md`, `tooling/`, and `templates/FSE_CONFORMANCE.md`.
+**Reasoning:** The rule has two halves. The first — a rule carried only as prose is unenforced — is well understood. The second is not: enforcement itself fails silently. A gate can report success while verifying nothing, because its subject set is empty, its dependency is unreachable and skipping scores as passing, or its matching logic is broken. The signal inverts, and absence of verification becomes indistinguishable from successful verification. Hence clauses 2 and 3: a check must fail loudly when it cannot run, and an enforcement artifact is proven by being watched failing on a known violation before it is trusted. Additive and backward compatible, so a minor bump. Stated in the abstract with no origin incident named, consistent with the notification and with the USO 12/13 precedent — and because fse-core is public, no holding names are recorded here.
+**Evidence base (three independent convergences within one week):** an integration suite that would have skipped silently in CI when its database was unreachable, scoring a green deploy gate; a suppression-glob translator in `tooling/fse-doctor` that silently matched nothing, which would have made every scoped deviation decorative (SESSION_09); and a CI test step that exits zero because the repository contains no test project. Independent convergence on one failure shape is the signature of a missing methodology rule, which is the same standard used to promote USO 13.
+**Self-application (recorded, not hidden):** the third instance above is live and unremediated — see Known Technical Debt. Promoting a rule while silently violating it is the failure the rule describes.
+**Next:** Close the vacuous-gate debt; wire fse-doctor into a pilot holding; carry the `.NET`-specific enforcement mechanics into fse-extensions.
 
 ---
 

@@ -2,7 +2,7 @@
 
 **The constraint-based AI development methodology.**
 
-**FSE methodology version: 1.2.1**
+**FSE methodology version: 1.3.0**
 
 > Your AI assistant forgets everything between sessions. FSE makes it remember.
 
@@ -112,6 +112,9 @@ These apply to every FSE project regardless of stack. Stack-specific orders live
 11. Bedrock Authoring Guard — never fill a foundation-file decision with a plausible default; leave undecided sections explicitly open
 12. Planning Provenance — tag every plan element Directed / Extrapolated / Inferred / Scaffold; surface inferences before building
 13. Query Artifact Discipline — schema changes are explicit versioned artifacts; queries are centralized and named; cross-boundary access is marked
+14. Executable Enforcement — invariants are encoded as checks that fail the build; a check that cannot run must fail loudly, never skip silently; guards are proven by watching them fail
+
+Full text of every standing order is in [`templates/FSE.md`](templates/FSE.md). Release history is in [`CHANGELOG.md`](CHANGELOG.md).
 
 ---
 
@@ -195,6 +198,7 @@ fse-core/
   README.md              ← you are here
   LICENSE                ← Apache 2.0
   VERSION                ← methodology version (mirrored by a git tag)
+  CHANGELOG.md           ← methodology release history
   CONTRIBUTING.md        ← how to contribute
   CODE_OF_CONDUCT.md     ← Contributor Covenant
   SECURITY.md            ← security disclosure policy
@@ -209,7 +213,11 @@ fse-core/
     FSE_PACKAGES.md
     PATTERNS.md
     FIELD_REPORT_TEMPLATE.md
+    FSE_CONFORMANCE.md   ← pin/conformance model: pinned core version, bindings, deviations
     ONBOARDING_PROMPT.md ← copy-paste prompt for the first AI session
+  tooling/               ← zero-dependency enforcement scripts (USO 14)
+    fse-doctor/          ← conformance validator, pin drift, structural pass
+    secret-scan/         ← pre-push secret scanner
   docs/                  ← methodology extension notifications & specs
     methodology/
   .github/               ← issue templates, PR template
