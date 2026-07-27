@@ -45,7 +45,7 @@ These reports are the most valuable contribution. They are how the methodology s
 
 You want to contribute language-specific or framework-specific rules.
 
-**Stack extensions live in a separate repo:** [fse-extensions](https://github.com/Joticle/fse-extensions). Do not add stack-specific content to fse-core. See the extensions repo for its contribution guide.
+**Stack extensions live in a separate repo:** [fse-extensions](https://github.com/Joticle-Git/fse-extensions). Do not add stack-specific content to fse-core. See the extensions repo for its contribution guide.
 
 ---
 

@@ -13,7 +13,7 @@ Update this file only when a gap is closed or a new structural fact is discovere
 | Production status | Production — public and published |
 | Primary users | Developers adopting FSE; AI coding assistants that read the templates |
 | Primary stack | Not applicable — documentation/methodology repository (Markdown) |
-| Repository | https://github.com/Joticle/fse-core |
+| Repository | https://github.com/Joticle-Git/fse-core |
 | Discovery date | 2026-06-08 |
 | Discovered by | Scott Michael Wilson |
 

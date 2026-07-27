@@ -302,7 +302,7 @@ Bedrock Authoring Guard: nothing below is ground truth until cleared.
 - **Owner:** Joticle, Inc. — Scott Michael Wilson
 - **Purpose:** The open-source FlowState Engineering methodology repository. It publishes the FSE templates, onboarding prompts, governance documents, and methodology extensions that downstream FSE projects adopt. It is the canonical source of the methodology.
 - **Status:** Production — public and published.
-- **Repository:** https://github.com/Joticle/fse-core
+- **Repository:** https://github.com/Joticle-Git/fse-core
 - **License:** Apache 2.0
 - **Methodology version:** 1.0.0 (tracked in `VERSION`; git tag `v1.0.0`)
 

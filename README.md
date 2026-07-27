@@ -18,7 +18,7 @@ FlowState Engineering is a methodology for building production software with AI 
 
 FSE fixes all three with a system that lives at your project root: living documents the AI reads at every session start, a session protocol that enforces discipline, and a self-healing build loop that catches errors before they reach production.
 
-FSE is **tool-agnostic**. It works with Claude Code, Cursor, Copilot, Windsurf, Aider, or any AI coding assistant. It is **stack-agnostic**. The methodology is universal; language-specific rules live in [FSE Stack Extensions](https://github.com/Joticle/fse-extensions).
+FSE is **tool-agnostic**. It works with Claude Code, Cursor, Copilot, Windsurf, Aider, or any AI coding assistant. It is **stack-agnostic**. The methodology is universal; language-specific rules live in [FSE Stack Extensions](https://github.com/Joticle-Git/fse-extensions).
 
 FSE is **free, open source, and Apache 2.0 licensed.**
 
@@ -123,7 +123,7 @@ Full text of every standing order is in [`templates/FSE.md`](templates/FSE.md). 
 ### 1. Clone or download the repo
 
 ```bash
-git clone https://github.com/Joticle/fse-core.git
+git clone https://github.com/Joticle-Git/fse-core.git
 ```
 
 Or download the three template files from the [`templates/`](templates/) folder.
@@ -173,11 +173,11 @@ You're running FSE.
 
 FSE Core is stack-agnostic. The session protocol, foundation files, and self-healing build loop work for any language.
 
-For language-specific standing orders, anti-patterns, and module structures, see **[FSE Stack Extensions](https://github.com/Joticle/fse-extensions)**.
+For language-specific standing orders, anti-patterns, and module structures, see **[FSE Stack Extensions](https://github.com/Joticle-Git/fse-extensions)**.
 
 The .NET extension is the reference implementation. Extensions for the top 10 stacks are open for community contribution.
 
-The same repository also hosts **methodology extensions** — cross-cutting practices that any stack can adopt. The first is [`kpi`](https://github.com/Joticle/fse-extensions/tree/main/kpi), which adds session-level metrics capture (complexity scoring, drift moments, portfolio rollup aggregates). Methodology extensions are opt-in per project.
+The same repository also hosts **methodology extensions** — cross-cutting practices that any stack can adopt. The first is [`kpi`](https://github.com/Joticle-Git/fse-extensions/tree/main/kpi), which adds session-level metrics capture (complexity scoring, drift moments, portfolio rollup aggregates). Methodology extensions are opt-in per project.
 
 ---
 
@@ -232,7 +232,7 @@ FSE is a living methodology. Real-world reports, methodology improvements, and n
 
 - **Found something that doesn't work?** Open an issue.
 - **Have a methodology improvement?** Open a PR with the proposed change and the reasoning.
-- **Want to add a stack extension?** See [fse-extensions](https://github.com/Joticle/fse-extensions).
+- **Want to add a stack extension?** See [fse-extensions](https://github.com/Joticle-Git/fse-extensions).
 - **Used FSE on a real project?** Share what worked and what didn't via discussions.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contribution process.
@@ -243,7 +243,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contribution process.
 
 - **Website:** [fstate.dev](https://fstate.dev)
 - **Quickstart guide:** [fstate.dev/quickstart](https://fstate.dev/quickstart)
-- **Stack extensions:** [github.com/Joticle/fse-extensions](https://github.com/Joticle/fse-extensions)
+- **Stack extensions:** [github.com/Joticle-Git/fse-extensions](https://github.com/Joticle-Git/fse-extensions)
 - **Issues & discussions:** Use the GitHub Issues tab on this repo
 
 ---
