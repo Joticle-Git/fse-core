@@ -2,7 +2,7 @@
 
 **The constraint-based AI development methodology.**
 
-**FSE methodology version: 1.4.0**
+**FSE methodology version: 1.4.1**
 
 > Your AI assistant forgets everything between sessions. FSE makes it remember.
 

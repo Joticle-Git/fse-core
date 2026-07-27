@@ -15,6 +15,15 @@ This project follows [Semantic Versioning](https://semver.org/):
 
 Dates are the release (tag) dates.
 
+## [1.4.1] — 2026-07-27
+
+### Removed
+- The vestigial line *"The term 'overnight run' is dropped. Replace with 'session'
+  or 'unattended session.' Sessions happen at all hours."* It was a one-time
+  terminology-migration instruction from an earlier rename, not a rule. The term it
+  retired is long gone, so the sentence instructed nobody and only added reading
+  cost. No rule changed; patch bump.
+
 ## [1.4.0] — 2026-07-26
 
 ### Removed
@@ -119,6 +128,7 @@ Dates are the release (tag) dates.
   Orders 1–11, Session Numbering & Artifact Lifecycle, and the Module Pattern
   (Context-Bounded Context).
 
+[1.4.1]: https://github.com/Joticle-Git/fse-core/releases/tag/v1.4.1
 [1.4.0]: https://github.com/Joticle-Git/fse-core/releases/tag/v1.4.0
 [1.3.1]: https://github.com/Joticle-Git/fse-core/releases/tag/v1.3.1
 [1.3.0]: https://github.com/Joticle-Git/fse-core/releases/tag/v1.3.0

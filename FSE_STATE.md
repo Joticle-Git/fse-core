@@ -5,8 +5,8 @@ This file is updated at the end of every session. It is the single source of tru
 ## Identity
 
 - **Project:** fse-core — the FlowState Engineering methodology repository
-- **FSE Version:** 1.4.0
-- **Last Updated:** 2026-07-26
+- **FSE Version:** 1.4.1
+- **Last Updated:** 2026-07-27
 - **Last Session By:** Scott Michael Wilson
 
 ## Build State
@@ -97,10 +97,18 @@ N/A — no build. The gate is documentation integrity.
 | SESSION_10 | 2026-07-26 | Promote Executable Enforcement to USO 14 — methodology v1.2.1 → v1.3.0; add `CHANGELOG.md` | success | (no separate report — recorded inline under Session History) |
 | SESSION_11 | 2026-07-26 | Backfill USO 12/13 + PLAN provenance steps into `templates/FSE.md`; add block-parity check — v1.3.0 → v1.3.1 | success | (no separate report — recorded inline under Session History) |
 | SESSION_12 | 2026-07-26 | Retire four dead rules (USO 2, EXECUTE 1/2/4); close the rule-classification arc unimplemented — v1.3.1 → v1.4.0 | success | (no separate report — recorded inline under Session History) |
+| SESSION_13 | 2026-07-27 | Remove vestigial "overnight run" terminology note from the methodology block — v1.4.0 → v1.4.1 | success | (no separate report — recorded inline under Session History) |
 
 ## Session History
 
 Most recent session first. Each entry is short — the diff tells the story of *what*; this log captures *why*.
+
+---
+
+### SESSION_13 — 2026-07-27 — Remove vestigial terminology note (v1.4.1)
+**Done:** Deleted the line *"The term 'overnight run' is dropped. Replace with 'session' or 'unattended session.' Sessions happen at all hours."* from the root and the published template. Blocks remain byte-identical (279 lines). `VERSION` 1.4.0 → 1.4.1, tagged `v1.4.1`.
+**Reasoning:** It was a one-time migration instruction left over from an earlier rename, not a rule — the term it retired is long gone, so the sentence instructed nobody and cost reading attention in the document adopters copy. Same cleanup principle as SESSION_12: text that no longer earns its place comes out rather than sitting as ceremony.
+**Process note:** No notification artifact was filed. Standing Order 2 governs methodology and extension *changes*; this removes editorial residue and alters no rule. The version bump and tag were still taken, because Standing Order 1 makes any edit to the `FSE START … FSE END` block a version event regardless of how small — that discipline is what keeps the published template trustworthy, and skipping it would be the cheaper kind of shortcut.
 
 ---
 

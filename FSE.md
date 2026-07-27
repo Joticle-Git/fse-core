@@ -168,8 +168,6 @@ The session identifier appears in:
 - **Commit messages** — `[FSE] Session 8 Phase 1 Run 2: <what shipped>` or `[FSE] Session 2B.1.2: <what shipped>`
 - **`FSE_STATE.md` session log** — see schema below
 
-The term "overnight run" is dropped. Replace with "session" or "unattended session." Sessions happen at all hours.
-
 ### Artifact Lifecycle
 
 Session reports and other session-generated artifacts move through two phases. The Tier scheme above describes *what* a document is; the Lifecycle describes *where it lives based on age and relevance*.
